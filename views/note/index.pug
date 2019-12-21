@@ -1,0 +1,36 @@
+extends ../base
+block head
+  title Notes
+block nav-item
+    a.nav-item.nav-link(href="/user/logout") Logout
+block body
+  if errs
+    each err in errs
+      .alert.alert-danger= err
+  a.btn.btn-sm.btn-success.btn-lg.fixed-bottom(href="/note/new") New
+  .container.mt-3
+    h2.mb-3 My Notes
+    if data
+      each note in data.high
+        .alert.alert-danger.active(role="alert")
+          h4.alert-heading= note.title
+          p= note.content
+          hr
+          a.btn.btn-danger(href="/note/delete/"+note._id) Delete
+          a.btn.btn-info.ml-2(href="/note/edit/"+note._id) Edit
+      each note in data.medium
+        .alert.alert-warning(role="alert")
+          h4.alert-heading= note.title
+          p= note.content
+          hr
+          a.btn.btn-danger(href="/note/delete/"+note._id) Delete
+          a.btn.btn-info.ml-2(href="/note/edit/"+note._id) Edit
+      each note in data.low
+        .alert.alert-info(role="alert")
+          h4.alert-heading= note.title
+          p= note.content
+          hr
+          a.btn.btn-danger(href="/note/delete/"+note._id) Delete
+          a.btn.btn-info.ml-2(href="/note/edit/"+note._id) Edit
+  script(src="/scripts/script.js")
+      

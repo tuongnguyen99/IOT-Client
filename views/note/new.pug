@@ -1,0 +1,30 @@
+extends ../base
+block head
+  title New Note
+block nav-item
+    a.nav-item.nav-link(href="/user/logout") Logout
+block body
+  .container.mt-5
+    h2.mb-4 New note
+    if errs
+      each err in errs
+        .alert.alert-danger= err
+    form(method="POST")
+      .form-group
+        label(for="title") Title
+        input#title.form-control(type="text" name= "title" placeholder="Title" value=value?value.title:"")
+      .form-group
+        label(for="content") Content
+        textarea#content.form-control(rows="6" type="text" name="content" placeholder="content")
+      p.mb-2 CriticalLevel
+      .form-check.form-check-inline
+        input#low.form-check-input(type="radio" name="criticalLevel" value="low" checked)
+        label.form-check-label.text-success(for="low") Low
+      .form-check.form-check-inline
+        input#medium.form-check-input(type="radio" name="criticalLevel" value="medium")
+        label.form-check-label.text-warning(for="medium") Medium
+      .form-check.form-check-inline
+        input#hight.form-check-input(type="radio" name="criticalLevel" value="high" )
+        label.form-check-label.text-danger(for="hight") High
+      br
+      button.btn.btn-success.mt-2(type="submit") Submit

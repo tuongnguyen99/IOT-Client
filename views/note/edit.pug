@@ -1,0 +1,43 @@
+
+extends ../base
+block head
+  title Edit
+block nav-item
+    a.nav-item.nav-link(href="/user/login") login
+block body
+  - var title= ""
+  - var content= ""
+  - criticalLevel=""
+  if note
+    - title= note.title
+    - content= note.content
+    - criticalLevel= note.criticalLevel
+  .container.mt-5
+    if errs
+      each err in errs
+        .alert.alert-danger= err
+    h2.mb-4 Edit note
+    if errs
+      each err in errs
+        .alert.alert-danger= err
+    form(method="POST")
+      .form-group
+        label(for="title") Title
+        input#title.form-control(type="text" name= "title" placeholder="Title" value=title)
+      .form-group
+        label(for="content") Content
+        textarea#content.form-control(rows="6" type="text" name="content" placeholder="content")= content
+      p.mb-2 CriticalLevel
+      each level in ["low", "medium", "high"]
+        case level
+          when criticalLevel
+            .form-check.form-check-inline
+              input#check.form-check-input(type="radio" name="criticalLevel" value=level checked)
+              label.form-check-label.text-dark(for="check")= criticalLevel
+          default
+            .form-check.form-check-inline
+              input#check.form-check-input(type="radio" name="criticalLevel" value=level)
+              label.form-check-label(for="check")= level
+  
+      br
+      button.btn.btn-success.mt-2(type="submit") Submit

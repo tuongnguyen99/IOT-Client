@@ -1,0 +1,20 @@
+extends ../base
+block head
+  title Login
+block body
+  .container.mt-5
+    h2.mb-4 Login
+    if messages
+      each message in messages
+        .alert.alert-success= message
+    if errs
+      each err in errs
+        .alert.alert-danger= err
+    form(action="/user/login" method="POST")
+      .form-group
+        label(for="username") Email address
+        input#username.form-control(type="text" name= "username" placeholder="Username" value=value?value.username:"")
+      .form-group
+        label(for="password") Password
+        input#password.form-control(type="password" name="password" placeholder="Password")
+      button.btn.btn-success(type="submit") Submit

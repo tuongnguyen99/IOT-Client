@@ -1,0 +1,16 @@
+extends ../base
+block head
+  title home
+block body
+  .container
+    if errs
+      each err in errs
+        .alert.alert-danger= err
+    .jumbotron
+      h1.text-center Home page
+      .d-flex.justify-content-center
+        unless loginState
+          a.btn.btn-warning.btn-md.mr-2(href="/user/login" role="button") Sign in
+          a.btn.btn-success.btn-md(href="/user/register" role="button") Sign up
+        else
+          a.btn.btn-success.btn-md(href="/note" role="button") My notes

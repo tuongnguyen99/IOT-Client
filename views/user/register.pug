@@ -1,0 +1,20 @@
+extends ../base
+block head
+  title Register
+block body
+  .container.mt-5
+    h2.mb-4 Register acount
+    if errs
+      each err in errs
+        .alert.alert-danger= err
+    form(method="POST")
+      .form-group
+        label(for="username") Email address
+        input#username.form-control(type="text" name= "username" placeholder="Username" value=value?value.username:"")
+      .form-group
+        label(for="password") Password
+        input#password.form-control(type="password" name="password" placeholder="Password")
+      .form-group
+        label(for="rePassword") Password
+        input#rePassword.form-control(type="password" name="rePassword" placeholder="Confirm password")
+      button.btn.btn-success(type="submit") Submit
