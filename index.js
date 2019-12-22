@@ -21,10 +21,12 @@ app.get('/', (req, res) => {
   res.render('./home/index',{
     loginState: req.signedCookies.user_id
   });
-  console.log(req.signedCookies.user_id);
 });
 app.use('/user', userRoute);
 app.use('/note', userValidate.requiredLogin, noteRoute);
+app.use(function(req, res) {
+  res.render('./404');
+});
 
 app.listen(port, () => {
   console.log('sever listening on port ' + port);
