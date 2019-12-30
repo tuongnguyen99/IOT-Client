@@ -37,7 +37,7 @@ module.exports = {
       .then(function(response) {
         if (response.data.length) {
           var user = response.data[0];
-          var passwordCompare = bcrypt.hashSync(data.password, user.password, 10);
+          var passwordCompare = bcrypt.compareSync(data.password, user.password, 10);
           if (passwordCompare) {
             res.cookie('user_id', user._id, {
               signed: true
